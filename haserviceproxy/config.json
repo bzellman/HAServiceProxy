@@ -3,6 +3,8 @@
   "version": "1.0.0",
   "slug": "haserviceproxy",
   "description": "A custom add-on to access internal services securely.",
+  "url": "https://github.com/bzellman/HAServiceProxy/tree/master/haserviceproxy",
+  "icon": "mdi:server-network",
   "options": {
     "services": [],
     "sidebar_services": [],
