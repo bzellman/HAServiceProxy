@@ -1,0 +1,29 @@
+{
+  "name": "HAServiceProxy",
+  "version": "1.0.0",
+  "slug": "haserviceproxy",
+  "description": "A custom add-on to access internal services securely.",
+  "options": {
+    "services": [],
+    "sidebar_services": [],
+    "ssl_cert": "/ssl/fullchain.pem",
+    "ssl_key": "/ssl/privkey.pem",
+    "log_level": "info"
+  },
+  "schema": {
+    "services": [
+      {
+        "name": "str",
+        "ip": "ipv4"
+      }
+    ],
+    "sidebar_services": ["str"],
+    "ssl_cert": "str",
+    "ssl_key": "str",
+    "log_level": "str"
+  },
+  "boot": "auto",
+  "ports": {
+    "8080/tcp": 8080
+  }
+}
