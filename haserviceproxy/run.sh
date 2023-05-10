@@ -17,5 +17,5 @@ sed -i "s|ssl_certificate .*|ssl_certificate $SSL_CERT;|" /etc/nginx/nginx.conf
 sed -i "s|ssl_certificate_key .*|ssl_certificate_key $SSL_KEY;|" /etc/nginx/nginx.conf
 sed -i "s/error_log .*/error_log \/dev\/stdout $LOG_LEVEL;/" /etc/nginx/nginx.conf
 
-# Start the add-on
-exec nginx -g "daemon off;"
+# Start the add-on without exec
+nginx -g "daemon off;"
