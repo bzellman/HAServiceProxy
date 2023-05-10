@@ -1,4 +1,4 @@
-ARG BUILD_FROM
+ARG BUILD_FROM=alpine:3.14
 FROM $BUILD_FROM
 
 # Set the working directory
