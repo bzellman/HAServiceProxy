@@ -1,15 +1,9 @@
-ARG BUILD_FROM
-FROM $BUILD_FROM
+FROM nginx:alpine
 
-ENV LANG C.UTF-8
+COPY run.sh /run.sh
+COPY ssl /etc/nginx/ssl
+COPY ui /usr/share/nginx/html
 
-# Install packages
-RUN apk add --no-cache nginx jq
+RUN chmod +x /run.sh
 
-# Copy data for add-on
-COPY run.sh /
-COPY nginx.conf.tpl /
-COPY services.sh /
-RUN chmod a+x /run.sh /services.sh
-
-CMD [ "/run.sh" ]
+CMD ["/run.sh"]

@@ -1,28 +1,35 @@
 {
-  "name": "HA Service Proxy",
+  "name": "HAServiceProxy",
   "version": "1.0.0",
-  "slug": "haserverproxy",
-  "description": "Expose internal services securely in Home Assistant",
-  "arch": ["armv7", "armhf", "aarch64", "amd64", "i386"],
-  "startup": "application",
-  "boot": "auto",
+  "slug": "haserviceproxy",
+  "description": "Access internal services through Home Assistant",
   "options": {
     "services": [],
-    "sidebar_services": [],
-    "ssl_cert": "",
-    "ssl_key": "",
-    "log_level": "error"
+    "ssl_key_path": "",
+    "ssl_cert_path": ""
   },
   "schema": {
     "services": [
       {
         "name": "str",
-        "ip": "ipv4"
+        "ip_address": "str",
+        "sidebar": "bool"
       }
-    ],
-    "sidebar_services": ["str"],
-    "ssl_cert": "str",
-    "ssl_key": "str",
-    "log_level": "str"
-  }
+    ]
+  },
+  "ingress": true,
+  "ingress_port": 0,
+  "ingress_entry": "/api/hassio_ingress/{uuid}",
+  "ingress_panel": true,
+  "boot": "auto",
+  "auto_uart": false,
+  "map": ["config:rw"],
+  "host_network": true,
+  "build": {
+    "dockerfile": "Dockerfile",
+    "args": {
+      "BUILD_FROM": "nginx:alpine"
+    }
+  },
+  "arch": ["armhf", "armv7", "aarch64", "amd64", "i386"]
 }
