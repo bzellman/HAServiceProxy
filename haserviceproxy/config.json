@@ -5,6 +5,12 @@
   "description": "Securely access internal services via Home Assistant",
   "startup": "services",
   "boot": "auto",
+  "build_from": {
+    "armv7": "ghcr.io/home-assistant/armv7-addon-base:latest",
+    "aarch64": "ghcr.io/home-assistant/aarch64-addon-base:latest",
+    "amd64": "ghcr.io/home-assistant/amd64-addon-base:latest",
+    "i386": "ghcr.io/home-assistant/i386-addon-base:latest"
+  },
   "options": {
     "services": [
       {
