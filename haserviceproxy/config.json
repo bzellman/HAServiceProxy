@@ -1,24 +1,33 @@
 {
   "name": "HA Service Proxy",
   "version": "1.0.0",
-  "slug": "haserverproxy",
-  "description": "Proxy for internal services",
-  "arch": ["aarch64", "amd64", "armhf", "armv7", "i386"],
-  "url": "https://github.com/yourusername/HAServiceProxy",
-  "startup": "application",
+  "slug": "haserviceproxy",
+  "description": "Securely access internal services via Home Assistant",
+  "startup": "services",
   "boot": "auto",
+  "build_from": {
+    "armv7": "ghcr.io/home-assistant/armv7-addon-base:latest",
+    "aarch64": "ghcr.io/home-assistant/aarch64-addon-base:latest",
+    "amd64": "ghcr.io/home-assistant/amd64-addon-base:latest",
+    "i386": "ghcr.io/home-assistant/i386-addon-base:latest"
+  },
   "options": {
-    "services": [],
-    "sidebar_services": [],
-    "ssl_cert": "",
-    "ssl_key": "",
+    "services": [
+      {
+        "name": "Service 1",
+        "ip": "192.168.1.2"
+      }
+    ],
+    "sidebar_services": ["Service 1"],
+    "ssl_cert": "/ssl/fullchain.pem",
+    "ssl_key": "/ssl/privkey.pem",
     "log_level": "info"
   },
   "schema": {
     "services": [
       {
         "name": "str",
-        "ip": "ipv4"
+        "ip": "str"
       }
     ],
     "sidebar_services": ["str"],
@@ -26,9 +35,7 @@
     "ssl_key": "str",
     "log_level": "str"
   },
-  "image": "homeassistant/{arch}-addon-haserverproxy",
-  "build": {
-    "from": "homeassistant/{arch}-addon-base",
-    "tag": "latest"
-  }
+  "arch": ["armv7", "aarch64", "amd64", "i386"],
+  "icon": "mdi:server-network"
 }
+
