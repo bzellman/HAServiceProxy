@@ -15,7 +15,9 @@
         "ip_address": "str",
         "sidebar": "bool"
       }
-    ]
+    ],
+    "ssl_key_path": "str",
+    "ssl_cert_path": "str"
   },
   "ingress": true,
   "ingress_port": 0,
