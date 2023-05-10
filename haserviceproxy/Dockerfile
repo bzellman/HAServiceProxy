@@ -1,10 +1,15 @@
 ARG BUILD_FROM
 FROM $BUILD_FROM
 
-RUN apk update && apk add --no-cache nginx jq
+ENV LANG C.UTF-8
 
-COPY nginx.conf.tpl /nginx.conf.tpl
-COPY run.sh /run.sh
-RUN chmod a+x /run.sh
+# Install packages
+RUN apk add --no-cache nginx jq
 
-CMD ["/run.sh"]
+# Copy data for add-on
+COPY run.sh /
+COPY nginx.conf.tpl /
+COPY services.sh /
+RUN chmod a+x /run.sh /services.sh
+
+CMD [ "/run.sh" ]
