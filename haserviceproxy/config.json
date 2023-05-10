@@ -1,13 +1,18 @@
 {
-  "name": "HAServiceProxy",
+  "name": "HA Service Proxy",
   "version": "1.0.0",
   "slug": "haserviceproxy",
-  "description": "A custom add-on to access internal services securely.",
-  "url": "https://github.com/bzellman/HAServiceProxy/tree/master/haserviceproxy",
-  "icon": "mdi:server-network",
+  "description": "Securely access internal services via Home Assistant",
+  "startup": "services",
+  "boot": "auto",
   "options": {
-    "services": [],
-    "sidebar_services": [],
+    "services": [
+      {
+        "name": "Service 1",
+        "ip": "192.168.1.2"
+      }
+    ],
+    "sidebar_services": ["Service 1"],
     "ssl_cert": "/ssl/fullchain.pem",
     "ssl_key": "/ssl/privkey.pem",
     "log_level": "info"
@@ -16,7 +21,7 @@
     "services": [
       {
         "name": "str",
-        "ip": "ipv4"
+        "ip": "str"
       }
     ],
     "sidebar_services": ["str"],
@@ -24,8 +29,6 @@
     "ssl_key": "str",
     "log_level": "str"
   },
-  "boot": "auto",
-  "ports": {
-    "8080/tcp": 8080
-  }
+  "arch": ["armv7", "aarch64", "amd64", "i386"],
+  "icon": "mdi:server-network"
 }
