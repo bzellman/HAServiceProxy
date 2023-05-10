@@ -4,6 +4,8 @@
 ssl_key_path="$(jq -r '.ssl_key_path' /data/options.json)"
 ssl_cert_path="$(jq -r '.ssl_cert_path' /data/options.json)"
 
+
+
 # Generate nginx configuration file
 cat << EOF > /etc/nginx/conf.d/default.conf
 server {
