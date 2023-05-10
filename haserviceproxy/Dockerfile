@@ -1,4 +1,4 @@
-ARG BUILD_FROM=alpine:3.14
+ARG BUILD_FROM
 FROM $BUILD_FROM
 
 # Set the working directory
@@ -15,4 +15,4 @@ COPY run.sh /run.sh
 RUN chmod a+x /run.sh
 
 # Set the entrypoint
-CMD ["/run.sh"]
+ENTRYPOINT ["/run.sh"]

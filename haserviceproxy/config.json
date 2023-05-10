@@ -36,5 +36,6 @@
     "log_level": "str"
   },
   "arch": ["armv7", "aarch64", "amd64", "i386"],
-  "icon": "mdi:server-network"
+  "icon": "mdi:server-network",
+  "init": false
 }
