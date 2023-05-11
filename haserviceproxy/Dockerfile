@@ -1,11 +1,20 @@
 ARG BUILD_ARCH
+# hadolint ignore=DL3006
 FROM ghcr.io/hassio-addons/debian-base/${BUILD_ARCH}:5.1.0
 
-RUN apt-get update && apt-get install -y nginx && apt-get clean
+# Set shell
+SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 
+# Setup base
+# hadolint ignore=DL3003
+RUN apt-get -qq update \
+    && apt-get -qq install --no-install-recommends -y nginx \
+    && (apt-get autoremove -y; apt-get autoclean -y)
+
+# Copy root filesystem
 COPY rootfs /
-COPY default.conf /etc/nginx/conf.d/default.conf
 
+# Build arguments
 ARG BUILD_ARCH
 ARG BUILD_DATE
 ARG BUILD_DESCRIPTION
@@ -21,14 +30,14 @@ LABEL \
     io.hass.arch="${BUILD_ARCH}" \
     io.hass.type="addon" \
     io.hass.version=${BUILD_VERSION} \
-    maintainer="Brad Zellman <bszells@gmail.com.com>" \
+    maintainer="Blake Blackshear <blakeb@blakeshome.com>" \
     org.opencontainers.image.title="${BUILD_NAME}" \
     org.opencontainers.image.description="${BUILD_DESCRIPTION}" \
-    org.opencontainers.image.vendor="Brad" \
-    org.opencontainers.image.authors="Brad Zellman <bszells@gmail.com.com>" \
+    org.opencontainers.image.vendor="Frigate Add-ons" \
+    org.opencontainers.image.authors="Blake Blackshear <blakeb@blakeshome.com>" \
     org.opencontainers.image.licenses="MIT" \
     org.opencontainers.image.source="https://github.com/${BUILD_REPOSITORY}" \
-    org.opencontainers.image.documentation="https://github.com/bzellman/HAServiceProxy/README.md" \
+    org.opencontainers.image.documentation="https://github.com/${BUILD_REPOSITORY}/blob/main/frigate_proxy/README.md" \
     org.opencontainers.image.created=${BUILD_DATE} \
     org.opencontainers.image.revision=${BUILD_REF} \
     org.opencontainers.image.version=${BUILD_VERSION}
