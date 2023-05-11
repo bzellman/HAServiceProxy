@@ -6,6 +6,20 @@ ssl_cert_path="$(jq -r '.ssl_cert_path' /data/options.json)"
 
 
 
+services="$(jq -c '.services[]' /data/options.json)"
+
+# Generate location blocks for each internal service
+location_blocks=""
+for row in $services; do
+  name=$(echo "$row" | jq -r '.name')
+  ip_address=$(echo "$row" | jq -r '.ip_address')
+  location_blocks="$location_blocks
+  location /${name}/ {
+    proxy_pass http://${ip_address};
+    auth_request /auth;
+  }"
+done
+
 # Generate nginx configuration file
 cat << EOF > /etc/nginx/conf.d/default.conf
 server {
@@ -35,13 +49,7 @@ server {
     proxy_set_header X-Forwarded-Proto \$scheme;
   }
 
-  # Add locations for each internal service
-  $(for service in "${!services[@]}"; do
-    echo "location /${services[$service]["name"]}/ {";
-    echo "  proxy_pass http://${services[$service]["ip_address"]};";
-    echo "  auth_request /auth;";
-    echo "}";
-  done)
+  $location_blocks
 }
 EOF
 

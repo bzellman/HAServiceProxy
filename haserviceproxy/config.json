@@ -20,8 +20,8 @@
     "ssl_cert_path": "str"
   },
   "ingress": true,
-  "ingress_port": 0,
-  "ingress_entry": "/api/hassio_ingress/{uuid}",
+  "ingress_entry": "/api/hassio_ingress/",
+  "ingress_port": 8099,
   "ingress_panel": true,
   "boot": "auto",
   "auto_uart": false,
