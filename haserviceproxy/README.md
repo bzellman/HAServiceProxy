@@ -1,14 +1,13 @@
-# HAServiceProxy
+# Home Assistant Add-on: Frigate Proxy
 
-A custom Home Assistant add-on to securely access internal services.
+![Supports aarch64 Architecture][aarch64-shield] ![Supports amd64 Architecture][amd64-shield] ![Supports armhf Architecture][armhf-shield] ![Supports armv7 Architecture][armv7-shield] ![Supports i386 Architecture][i386-shield]
 
-## Installation
+This addon creates a proxy to a Frigate server run separately from Home Assistant so that you can have the benefit of access in the sidebar without running Frigate as an addon.
 
-1. Add this repository URL in Home Assistant: `https://github.com/bzellman/HAServiceProxy`
-2. Install the "ServiceProxy" add-on from the "Your Add-ons" section in the Add-on Store.
-3. Configure the add-on by entering the required information, such as internal IP addresses, service names, and SSL certificate paths.
-4. Start the add-on.
+Note that this addon does not run Frigate itself.
 
-## Usage
-
-You can access the internal services via iframes in a Lovelace dashboard or as an add-on item in the Home Assistant sidebar.
+[aarch64-shield]: https://img.shields.io/badge/aarch64-yes-green.svg
+[amd64-shield]: https://img.shields.io/badge/amd64-yes-green.svg
+[armhf-shield]: https://img.shields.io/badge/armhf-yes-green.svg
+[armv7-shield]: https://img.shields.io/badge/armv7-yes-green.svg
+[i386-shield]: https://img.shields.io/badge/i386-yes-green.svg
