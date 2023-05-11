@@ -1,8 +1,8 @@
-name: Frigate Proxy
-version: "1.0"
+name: HAService
+version: "1.0.0"
 panel_icon: "mdi:web"
 panel_title: HAServiceProxy
-slug: ha-proxy
+slug: ha-service-proxy
 description: Proxy addon for Services
 url: "https://github.com/bzellman/HAServiceProxy"
 startup: application
