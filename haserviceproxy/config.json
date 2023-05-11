@@ -1,6 +1,6 @@
 {
   "name": "HAServiceProxy",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "slug": "haserviceproxy",
   "description": "Expose internal services securely through Home Assistant",
   "startup": "services",
