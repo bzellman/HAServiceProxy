@@ -1,19 +1,27 @@
 {
   "name": "HAServiceProxy",
-  "version": "1.0.1",
+  "version": "1.0.0",
   "slug": "haserviceproxy",
-  "description": "Access internal services through Home Assistant",
+  "description": "Expose internal services securely through Home Assistant",
+  "startup": "services",
+  "boot": "auto",
   "options": {
-    "services": [],
-    "ssl_key_path": "",
-    "ssl_cert_path": ""
+    "services": [
+      {
+        "name": "my-service",
+        "ip_address": "192.168.0.205:8080",
+        "sidebar": true
+      }
+    ],
+    "ssl_key_path": "/ssl/privkey.pem",
+    "ssl_cert_path": "/ssl/fullchain.pem"
   },
   "schema": {
     "services": [
       {
         "name": "str",
         "ip_address": "str",
-        "sidebar": "bool"
+        "sidebar": "bool?"
       }
     ],
     "ssl_key_path": "str",
@@ -22,16 +30,8 @@
   "ingress": true,
   "ingress_entry": "/api/hassio_ingress/",
   "ingress_port": 8099,
-  "ingress_panel": true,
-  "boot": "auto",
-  "auto_uart": false,
-  "map": ["config:rw"],
-  "host_network": true,
-  "build": {
-    "dockerfile": "Dockerfile",
-    "args": {
-      "BUILD_FROM": "nginx:alpine"
-    }
-  },
-  "arch": ["armhf", "armv7", "aarch64", "amd64", "i386"]
+  "arch": ["armhf", "armv7", "aarch64", "amd64", "i386"],
+  "stage": "experimental",
+  "hassio_api": true,
+  "homeassistant_api": true
 }
