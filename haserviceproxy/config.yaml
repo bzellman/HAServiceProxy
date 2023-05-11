@@ -1,5 +1,5 @@
 name: HAService
-version: "1.0.3"
+version: "1.0.4"
 panel_icon: "mdi:web"
 panel_title: HAServiceProxy
 slug: ha-service-proxy
